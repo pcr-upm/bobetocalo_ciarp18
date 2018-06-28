@@ -1,2 +1,32 @@
-# bobetocalo_ciarp18
-Face Alignment using a Cascade of Recombinator Networks
+## Results
+
+* **Pupils**
+   * threshold=8
+   
+|Database|NME|AUC|FR|
+|:--:|:--:|:--:|:--:|
+|300W test|5.278|38.562|11.611|
+|Helen|4.193|47.775|1.515|
+|LFPW|4.655|41.915|2.232|
+|iBUG|8.966|10.414|51.851|
+|COFW|6.004|28.893|13.609|
+
+=========================================
+
+* **Corners**
+   * threshold=8
+
+|Database|NME|AUC|FR|
+|:--:|:--:|:--:|:--:|
+|300W private|4.596|43.713|2.500|
+|indoor|4.589|43.859|2.000|
+|outdoor|4.603|43.550|3.000|
+
+=========================================
+
+* **Height**
+   * threshold=4
+
+|Database|NME|AUC|FR|
+|:--:|:--:|:--:|:--:|
+|AFLW|2.220|45.726|2.837|
