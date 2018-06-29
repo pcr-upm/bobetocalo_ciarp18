@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-# Test face multitask algorithms
+# Test face alignment algorithm
 #------------------------------------------------------------------------------
 project(bobetocalo_ciarp18)
 cmake_minimum_required(VERSION 3.2)

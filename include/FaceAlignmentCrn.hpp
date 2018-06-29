@@ -46,6 +46,20 @@ public:
   void
   load();
 
+  tensorflow::Status
+  imageToTensor
+    (
+    const cv::Mat &img,
+    std::vector<tensorflow::Tensor>* output_tensors
+    );
+
+  std::vector<cv::Mat>
+  tensorToMaps
+    (
+    const tensorflow::Tensor &img_tensor,
+    const cv::Size &face_size
+    );
+
   void
   process
     (

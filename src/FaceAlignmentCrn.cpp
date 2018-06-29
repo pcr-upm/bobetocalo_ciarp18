@@ -153,7 +153,7 @@ FaceAlignmentCrn::load()
 //
 // -----------------------------------------------------------------------------
 tensorflow::Status
-imageToTensor
+FaceAlignmentCrn::imageToTensor
   (
   const cv::Mat &img,
   std::vector<tensorflow::Tensor>* output_tensors
@@ -197,7 +197,7 @@ imageToTensor
 //
 // -----------------------------------------------------------------------------
 std::vector<cv::Mat>
-tensorToMaps
+FaceAlignmentCrn::tensorToMaps
   (
   const tensorflow::Tensor &img_tensor,
   const cv::Size &face_size
