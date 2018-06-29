@@ -42,20 +42,7 @@ FaceAlignmentCrn::parseOptions
   FaceAlignment::parseOptions(argc, argv);
   namespace po = boost::program_options;
   po::options_description desc("FaceAlignmentCrn options");
-  desc.add_options()
-    ("database", po::value<std::string>(), "Choose database [300w_public, 300w_private, cofw, aflw, menpo]");
   UPM_PRINT(desc);
-
-  /// Process the command line parameters
-  po::variables_map vm;
-  po::command_line_parser parser(argc, argv);
-  parser.options(desc);
-  const po::parsed_options parsed_opt(parser.allow_unregistered().run());
-  po::store(parsed_opt, vm);
-  po::notify(vm);
-
-  if (vm.count("database"))
-    _database = vm["database"].as<std::string>();
 };
 
 // -----------------------------------------------------------------------------

@@ -70,7 +70,6 @@ public:
 
 private:
   std::string _path;
-  std::string _database;
   std::vector<unsigned int> _cnn_landmarks;
   std::unique_ptr<tensorflow::Session> _session;
 };
