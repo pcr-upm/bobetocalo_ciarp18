@@ -81,20 +81,6 @@ FaceAlignmentCrn::load()
   UPM_PRINT("Loading CRN model");
   std::string trained_model = _path + _database + ".pb";
   std::vector<unsigned int> cnn_landmarks;
-  if ((_database == "300w_public") or (_database == "300w_private") or (_database == "menpo"))
-  {
-    DB_PARTS[FacePartLabel::leyebrow] = {1, 119, 2, 121, 3};
-    DB_PARTS[FacePartLabel::reyebrow] = {4, 124, 5, 126, 6};
-    DB_PARTS[FacePartLabel::leye] = {7, 138, 139, 8, 141, 142};
-    DB_PARTS[FacePartLabel::reye] = {11, 144, 145, 12, 147, 148};
-    DB_PARTS[FacePartLabel::nose] = {128, 129, 130, 17, 16, 133, 134, 135, 18};
-    DB_PARTS[FacePartLabel::tmouth] = {20, 150, 151, 22, 153, 154, 21, 165, 164, 163, 162, 161};
-    DB_PARTS[FacePartLabel::bmouth] = {156, 157, 23, 159, 160, 168, 167, 166};
-    DB_PARTS[FacePartLabel::lear] = {101, 102, 103, 104, 105, 106};
-    DB_PARTS[FacePartLabel::rear] = {112, 113, 114, 115, 116, 117};
-    DB_PARTS[FacePartLabel::chin] = {107, 108, 24, 110, 111};
-    _cnn_landmarks = {101, 102, 103, 104, 105, 106, 107, 108, 24, 110, 111, 112, 113, 114, 115, 116, 117, 1, 119, 2, 121, 3, 4, 124, 5, 126, 6, 128, 129, 130, 17, 16, 133, 134, 135, 18, 7, 138, 139, 8, 141, 142, 11, 144, 145, 12, 147, 148, 20, 150, 151, 22, 153, 154, 21, 156, 157, 23, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168};
-  }
   if (_database == "cofw")
   {
     DB_PARTS[FacePartLabel::leyebrow] = {1, 101, 3, 102};
@@ -107,7 +93,7 @@ FaceAlignmentCrn::load()
     DB_PARTS[FacePartLabel::chin] = {24};
     _cnn_landmarks = {1, 101, 3, 102, 4, 103, 6, 104, 7, 9, 8, 10, 105, 11, 13, 12, 14, 106, 16, 17, 18, 107, 20, 22, 21, 108, 109, 23, 24};
   }
-  if (_database == "aflw")
+  else if (_database == "aflw")
   {
     DB_PARTS[FacePartLabel::leyebrow] = {1, 2, 3};
     DB_PARTS[FacePartLabel::reyebrow] = {4, 5, 6};
@@ -119,6 +105,34 @@ FaceAlignmentCrn::load()
     DB_PARTS[FacePartLabel::rear] = {19};
     DB_PARTS[FacePartLabel::chin] = {24};
     _cnn_landmarks = {1, 2, 3, 4, 5, 6, 7, 101, 8, 11, 102, 12, 15, 16, 17, 18, 19, 20, 103, 21, 24};
+  }
+  else if (_database == "wflw")
+  {
+    DB_PARTS[upm::FacePartLabel::leyebrow] = {1, 134, 2, 136, 3, 138, 139, 140, 141};
+    DB_PARTS[upm::FacePartLabel::reyebrow] = {6, 147, 148, 149, 150, 4, 143, 5, 145};
+    DB_PARTS[upm::FacePartLabel::leye] = {7, 161, 9, 163, 8, 165, 10, 167, 196};
+    DB_PARTS[upm::FacePartLabel::reye] = {11, 169, 13, 171, 12, 173, 14, 175, 197};
+    DB_PARTS[upm::FacePartLabel::nose] = {151, 152, 153, 17, 16, 156, 157, 158, 18};
+    DB_PARTS[upm::FacePartLabel::tmouth] = {20, 177, 178, 22, 180, 181, 21, 192, 191, 190, 189, 188};
+    DB_PARTS[upm::FacePartLabel::bmouth] = {187, 186, 23, 184, 183, 193, 194, 195};
+    DB_PARTS[upm::FacePartLabel::lear] = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110};
+    DB_PARTS[upm::FacePartLabel::rear] = {122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132};
+    DB_PARTS[upm::FacePartLabel::chin] = {111, 112, 113, 114, 115, 24, 117, 118, 119, 120, 121};
+    _cnn_landmarks = {100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 24, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 1, 134, 2, 136, 3, 138, 139, 140, 141, 4, 143, 5, 145, 6, 147, 148, 149, 150, 151, 152, 153, 17, 16, 156, 157, 158, 18, 7, 161, 9, 163, 8, 165, 10, 167, 11, 169, 13, 171, 12, 173, 14, 175, 20, 177, 178, 22, 180, 181, 21, 183, 184, 23, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197};
+  }
+  else // (_database == "300w_public") or (_database == "300w_private") or (_database == "menpo")
+  {
+    DB_PARTS[FacePartLabel::leyebrow] = {1, 119, 2, 121, 3};
+    DB_PARTS[FacePartLabel::reyebrow] = {4, 124, 5, 126, 6};
+    DB_PARTS[FacePartLabel::leye] = {7, 138, 139, 8, 141, 142};
+    DB_PARTS[FacePartLabel::reye] = {11, 144, 145, 12, 147, 148};
+    DB_PARTS[FacePartLabel::nose] = {128, 129, 130, 17, 16, 133, 134, 135, 18};
+    DB_PARTS[FacePartLabel::tmouth] = {20, 150, 151, 22, 153, 154, 21, 165, 164, 163, 162, 161};
+    DB_PARTS[FacePartLabel::bmouth] = {156, 157, 23, 159, 160, 168, 167, 166};
+    DB_PARTS[FacePartLabel::lear] = {101, 102, 103, 104, 105, 106};
+    DB_PARTS[FacePartLabel::rear] = {112, 113, 114, 115, 116, 117};
+    DB_PARTS[FacePartLabel::chin] = {107, 108, 24, 110, 111};
+    _cnn_landmarks = {101, 102, 103, 104, 105, 106, 107, 108, 24, 110, 111, 112, 113, 114, 115, 116, 117, 1, 119, 2, 121, 3, 4, 124, 5, 126, 6, 128, 129, 130, 17, 16, 133, 134, 135, 18, 7, 138, 139, 8, 141, 142, 11, 144, 145, 12, 147, 148, 20, 150, 151, 22, 153, 154, 21, 156, 157, 23, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168};
   }
   tensorflow::GraphDef graph;
   tensorflow::Status load_graph_status = ReadBinaryProto(tensorflow::Env::Default(), trained_model, &graph);
