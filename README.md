@@ -1,32 +1,35 @@
-## Results
+# Facial Landmarks Detection using a Cascade of Recombinator Networks
 
-* **Pupils**
-   * threshold=8
-   
-|Database|NME|AUC|FR|
-|:--:|:--:|:--:|:--:|
-|300W test|4.837|42.119|8.272|
-|Helen|3.919|51.056|0.909|
-|LFPW|4.339|45.817|0.892|
-|iBUG|7.905|14.117|38.518|
-|COFW|5.495|33.134|7.889|
+We provide C++ code in order to replicate the CRN experiments in our paper https://bobetocalo.github.io/pdf/paper_ciarp18.pdf
 
-=========================================
+If you use this code for your own research, you must reference our CIARP paper:
 
-* **Corners**
-   * threshold=8
+```
+Facial Landmarks Detection using a Cascade of Recombinator Networks
+Pedro Diego López, Roberto Valle, Luis Baumela.
+Conference on Progress in Pattern Recognition, Image Analysis, Computer Vision and Applications, 23nd Iberoamerican Congress, CIARP 2018, Madrid, Spain, November 19-22, 2018.
+```
 
-|Database|NME|AUC|FR|
-|:--:|:--:|:--:|:--:|
-|300W private|4.267|47.352|2.333|
-|indoor|4.284|47.367|2.666|
-|outdoor|4.250|47.322|2.000|
+#### Requisites
+- faces_framework https://github.com/bobetocalo/faces_framework
 
-=========================================
-
-* **Height**
-   * threshold=4
-
-|Database|NME|AUC|FR|
-|:--:|:--:|:--:|:--:|
-|AFLW|2.217|45.764|2.734|
+#### Installation
+This repository must be located inside the following directory:
+```
+faces_framework
+    └── alignment 
+        └── bobetocalo_ciarp18
+```
+You need to have a C++ compiler (supporting C++11):
+```
+> mkdir release
+> cd release
+> cmake ..
+> make -j$(nproc)
+> cd ..
+```
+#### Usage
+Use the --database option to load the proper trained model.
+```
+> ./release/face_alignment_bobetocalo_ciarp18_test --database 300w_public
+```
