@@ -12,6 +12,7 @@ Conference on Progress in Pattern Recognition, Image Analysis, Computer Vision a
 
 #### Requisites
 - faces_framework https://github.com/bobetocalo/faces_framework
+- Tensorflow (v1.8.0)
 
 #### Installation
 This repository must be located inside the following directory:
@@ -29,7 +30,9 @@ You need to have a C++ compiler (supporting C++11):
 > cd ..
 ```
 #### Usage
+Use the --measure option to set the face alignment normalization.
+
 Use the --database option to load the proper trained model.
 ```
-> ./release/face_alignment_bobetocalo_ciarp18_test --database 300w_public
+> ./release/face_alignment_bobetocalo_ciarp18_test --measure pupils --database 300w_public
 ```
